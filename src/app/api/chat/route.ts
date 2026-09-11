@@ -4,6 +4,7 @@ import { retrieve } from "@/lib/retrieve";
 import { buildSystemPrompt, servedModel, type Kelas, type Mode } from "@/lib/contract";
 import { hitsToExcerpts, attachFigures } from "@/lib/excerpts";
 import { vllmChat, type ChatMsg } from "@/lib/llm";
+import { bersihkanSoal } from "@/lib/soal";
 import type { Jenjang } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -280,6 +281,16 @@ export async function POST(req: NextRequest) {
             if (tipe !== "mcq") {
               list = list.map(({ kunci: _buang, ...sisa }) => sisa);
             }
+            // Buang framing RAG dari teks soal. Siswa tidak melihat kutipan apa pun, jadi
+            // "Menurut bacaan, ..." mengandaikan sesuatu yang tidak ada di layarnya. Diukur:
+            // 181 dari 758 soal di data latih practice v4 memuatnya (23,9%); pembersih ini
+            // menangani 93% dan mengubah NOL dari 577 soal yang sudah bersih.
+            // Tambalan, bukan obat -- frasanya ada di data latih, jadi obatnya practice v5.
+            list = list.map((s) =>
+              typeof s.pertanyaan === "string"
+                ? { ...s, pertanyaan: bersihkanSoal(s.pertanyaan) }
+                : s
+            );
             answerFinal = JSON.stringify({ soal: list });
           }
         } catch {
