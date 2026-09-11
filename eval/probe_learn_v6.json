@@ -1,0 +1,210 @@
+[
+ {
+  "id": "belajar-001",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang alat musik",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.665,
+  "sumber_top1": "Panduan Guru Seni Musik untuk SMA/MA/SMK/MAK Kelas X (Edisi Revisi), H. Lembar K",
+  "giliran1": "Sebelum kita bahas, apa yang sudah kamu tahu tentang alat musik? Alat musik apa yang paling kamu kuasai?",
+  "giliran2": "Bagus, kamu sudah mau menghubungkannya dengan materi sebelumnya. Buku kemarin membahas ragam alat musik berdasarkan cara memainkannya, yaitu tiup, gesek, petik, pukul, dan ditekan [1]. Dari lima kelompok itu, alat musik apa yang paling kamu ingat?",
+  "model": "learn",
+  "checks": {
+   "sitasi": true,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-002",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang lapisan tanah",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.664,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, Z › Tanah dan Keberlangsungan Kehidup",
+  "giliran1": "Sebelum kita masuk, coba jawab dulu. Kalau kamu gali tanah di halaman rumahmu, lapisan apa saja yang kamu temukan? Coba sebutkan dua.",
+  "giliran2": "Bagus, kamu sudah memegang bagian yang benar. Hubungannya memang ada, karena tanah itu lapisan. Tapi di buku, lapisan tanah tidak hanya satu. Petunjuknya, lapisan luar tanah itu yang paling sering kita sentuh. Menurutmu, lapisan apa yang paling dekat dengan permukaan tanah? Sesudah itu kita pelajari satu per satu.",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-003",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang bioteknologi pangan",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.66,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, ZYX › 7Bioteknologi",
+  "giliran1": "Sebelum kita masuk, apa yang sudah kamu tahu tentang bioteknologi pangan? Contoh makanan apa yang kamu bayangkan?",
+  "giliran2": "Hubungan dengan bab sebelumnya itu benar. Petunjukku, lihat pada bahan yang diolahnya, bukan pada alat yang dipakai. Di bab bioteknologi pangan, contoh makanan yang dihasilkan dari mikroorganisme disebut apa? Menurutmu, apa yang membuat makanan itu disebut produk bioteknologi? Sesudah itu kita pelajari satu contoh, yaitu tempe.",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-004",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang kemagnetan",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.652,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, Petunjuk Penggunaan Buku › 6Kemagneta",
+  "giliran1": "Sebelum kita bahas, aku mau tahu dulu. Menurutmu magnet itu apa, dan dari bahan apa saja bisa dibuat? Sebutkan dua bahan yang kamu tahu.",
+  "giliran2": "Bagus, kamu sudah mau menghubungkannya dengan materi sebelumnya. Di bukumu, magnet terbuat dari logam seperti besi dan baja [1]. Sekarang coba pikirkan, kalau magnetnya terbuat dari besi, apakah magnet itu bisa dibuat dari besi bekas? Menurutmu, apa yang perlu kamu lakukan supaya besi bekas menjadi magnet?",
+  "model": "learn",
+  "checks": {
+   "sitasi": true,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-005",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang masalah sosial",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.642,
+  "sumber_top1": "Sosiologi untuk SMA/MA Kelas XI (Edisi Revisi), RAGAMKETIMPANGAN GENDER › C. Pen",
+  "giliran1": "Sebelum kita masuk materi, aku mau tahu dulu. Menurutmu, masalah sosial itu masalah apa saja? Contohnya apa saja di sekitarmu? Coba sebutkan tiga.",
+  "giliran2": "Hubungan dengan materi kemarin itu bagus, karena buku memang memuat bagian penelitian berbasis pemecahan masalah sosial. Tapi jangan langsung kamu tulis di buku, aku mau kamu jujur dulu. Menurutmu, apa yang membuat suatu masalah disebut masalah sosial? Menurutmu, masalah sosial itu masalah pribadi atau masalah masyarakat? Sesudah itu kita cari jawabannya bersama-sama.",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-006",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang novel sejarah",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.637,
+  "sumber_top1": "Bahasa Indonesia Kelas XII, Menikmati Cerita Sejarah › Bab 2",
+  "giliran1": "Sebelum kita masuk, apa yang sudah kamu tahu tentang novel sejarah? Coba sebutkan satu hal saja. Menurutmu, apa bedanya dengan novel biasa?",
+  "giliran2": "Hubungannya memang ada. Petunjuknya, novel sejarah sering dipakai untuk memperkenalkan sejarah kepada masyarakat. Satu langkah dulu, coba lihat bagian orientasi dalam struktur teks cerita sejarah. Menurutmu, apa yang biasanya muncul di bagian itu? Sesudah itu kita bahas bersama.",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-007",
+  "kategori": "belajar",
+  "jenjang": "SD",
+  "kelas": "Kelas 2",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang hidup rukun",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.629,
+  "sumber_top1": "Pendidikan Agama Kristen Dan Budi Pekerti Kelas II, A. Pengantar › Rukun di Seko",
+  "giliran1": "Sebelum kita mulai, coba ceritakan dulu. Menurutmu, apa yang membuat teman-temanmu di sekolah bisa hidup rukun? Ceritakan dua hal saja.",
+  "giliran2": "Betul, buku kemarin memang tentang rukun di sekolah. Langkah pertama, coba ingat lagu yang dinyanyikan di pelajaran itu. Judulnya apa, dan apa isinya? Coba sebutkan satu baris saja.",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-008",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang jaringan komputer",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.621,
+  "sumber_top1": "Informatika untuk SMP/MTs Kelas VIII (Edisi Revisi), Tabel Logika Gerbang Sirkui",
+  "giliran1": "Sebelum kita bahas, apa yang sudah kamu tahu tentang jaringan komputer? Perangkat apa saja yang biasanya ada di jaringan rumahmu? Lalu apa bedanya dengan internet? Jawab dua kalimat saja ya.",
+  "giliran2": "Bagus, kamu sudah mau membuka babnya. Hubungannya memang ada, karena internet itu jaringan antarjaringan komputer yang jangkauannya lebih luas daripada jaringan lokal. Jaringan lokal, atau LAN, biasanya terdiri atas dua perangkat yang terhubung menggunakan kabel atau tanpa kabel, dan perangkat tambahan seperti switch atau router diperlukan jika ada lebih dari dua perangkat. Kalau di rumahmu ada empat komputer, kamu butuh apa lagi supaya semuanya bisa saling bicara?",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ }
+]

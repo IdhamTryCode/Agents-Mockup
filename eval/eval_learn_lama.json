@@ -1,0 +1,266 @@
+[
+ {
+  "id": "belajar-001",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang alat musik",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.665,
+  "sumber_top1": "Panduan Guru Seni Musik untuk SMA/MA/SMK/MAK Kelas X (Edisi Revisi), H. Lembar K",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": false
+  },
+  "latency": 16.3,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Baik, mari kita mulai dengan alat musik. Alat musik itu banyak jenisnya, tapi bisa kita bagi menjadi beberapa kategori utama. Ada alat musik tiup, alat musik gesek, alat musik petik, alat musik pukul, dan alat musik ditekan. Setiap kategori punya cara bermain yang berbeda. Misalnya, alat musik tiup seperti seruling atau flute, alat musik gesek seperti biola atau cello, alat musik petik seperti gitar atau ukulele, alat musik pukul seperti drum atau tamborin, dan alat musik ditekan seperti piano atau keyboard. Apakah kamu ingin tahu lebih detail tentang salah satu kategori ini?",
+  "n_sumber": 5,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.665,
+   "threshold": 0.55
+  }
+ },
+ {
+  "id": "belajar-002",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang lapisan tanah",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.664,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, Z › Tanah dan Keberlangsungan Kehidup",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": true
+  },
+  "latency": 12.3,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Lapisan tanah itu seperti buku yang terdiri dari beberapa halaman. Setiap halaman punya peran penting untuk kehidupan tumbuhan. Ada lapisan atas yang kaya nutrisi, ada juga lapisan bawah yang lebih padat. Lapisan tanah yang baik itu seperti punya banyak halaman yang bisa dibaca, jadi tumbuhan bisa tumbuh subur. Apa yang membuatmu penasaran tentang lapisan tanah ini?",
+  "n_sumber": 2,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.664,
+   "threshold": 0.55
+  }
+ },
+ {
+  "id": "belajar-003",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang bioteknologi pangan",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.66,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, ZYX › 7Bioteknologi",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": true
+  },
+  "latency": 12.6,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Baik, mari kita bahas bioteknologi pangan. Bioteknologi pangan adalah penggunaan makhluk hidup atau bagian dari makhluk hidup untuk menghasilkan produk makanan. Contohnya, pembuatan tempe dari fermentasi kedelai, atau pembuatan yoghurt dari fermentasi susu. Proses fermentasi ini melibatkan mikroorganisme seperti bakteri dan jamur. Apa yang kamu ketahui tentang proses fermentasi?",
+  "n_sumber": 3,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.66,
+   "threshold": 0.55
+  }
+ },
+ {
+  "id": "belajar-004",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang kemagnetan",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.652,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, Petunjuk Penggunaan Buku › 6Kemagneta",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": false
+  },
+  "latency": 15.8,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Baik, mari kita mulai dengan kemagnetan. Kemagnetan adalah sifat alami dari beberapa benda yang bisa menarik atau menolak benda lain. Ini terjadi karena adanya gerakan elektron di dalam atom. Elektron yang bergerak menciptakan medan magnet. Magnet itu sendiri dibuat dari logam seperti besi, baja, atau nikel. Ada dua jenis kutub magnet: utara dan selatan. Kutub yang sama akan menolak, sedangkan kutub yang berbeda akan menarik. Sekarang, apakah kamu sudah pernah melihat magnet di sekitar kita?",
+  "n_sumber": 2,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.652,
+   "threshold": 0.55
+  }
+ },
+ {
+  "id": "belajar-005",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang masalah sosial",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.642,
+  "sumber_top1": "Sosiologi untuk SMA/MA Kelas XI (Edisi Revisi), RAGAMKETIMPANGAN GENDER › C. Pen",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": true
+  },
+  "latency": 7.8,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Baik, mari kita mulai dengan memahami apa itu masalah sosial. Secara umum, masalah sosial adalah kondisi sosial yang dianggap merugikan oleh sebagian masyarakat dan memerlukan penyelesaian. Ini bisa berupa isu-isu seperti kemiskinan, diskriminasi, atau kekerasan. Masalah sosial seringkali berkaitan dengan pelanggaran nilai atau norma masyarakat yang kuat dan bertahan dalam jangka waktu lama. Apakah kamu pernah melihat contoh masalah sosial di sekitar kita?",
+  "n_sumber": 3,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.642,
+   "threshold": 0.55
+  }
+ },
+ {
+  "id": "belajar-006",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang novel sejarah",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.637,
+  "sumber_top1": "Bahasa Indonesia Kelas XII, Menikmati Cerita Sejarah › Bab 2",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": false
+  },
+  "latency": 7.6,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Baik, mari kita mulai dengan novel sejarah. Novel sejarah adalah jenis novel yang menggunakan fakta sejarah sebagai latar belakang cerita. Ini berbeda dengan novel fiksi biasa yang mungkin menggunakan sejarah sebagai inspirasi, tapi tidak selalu akurat. Novel sejarah biasanya mencoba menggambarkan kehidupan tokoh sejarah atau peristiwa sejarah dengan cara yang lebih hidup dan menarik. Contohnya, novel tentang Soekarno atau tokoh-tokoh penting lainnya. Apa yang membuatmu tertarik dengan novel sejarah?",
+  "n_sumber": 4,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.637,
+   "threshold": 0.55
+  }
+ },
+ {
+  "id": "belajar-007",
+  "kategori": "belajar",
+  "jenjang": "SD",
+  "kelas": "Kelas 2",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang hidup rukun",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.629,
+  "sumber_top1": "Pendidikan Agama Kristen Dan Budi Pekerti Kelas II, A. Pengantar › Rukun di Seko",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": true
+  },
+  "latency": 4.8,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Baik, mari kita bahas tentang hidup rukun. Hidup rukun itu penting banget, lho! Menurutmu, apa yang membuat hidup rukun itu bisa terjadi di sekolah? Coba ceritakan, ya.",
+  "n_sumber": 4,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.629,
+   "threshold": 0.55
+  }
+ },
+ {
+  "id": "belajar-008",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang jaringan komputer",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.621,
+  "sumber_top1": "Informatika untuk SMP/MTs Kelas VIII (Edisi Revisi), Tabel Logika Gerbang Sirkui",
+  "checks": {
+   "jawab": true,
+   "sitasi": false,
+   "memandu": false
+  },
+  "latency": 14.8,
+  "model": "learn",
+  "error": null,
+  "jawaban": "Baik, mari kita mulai dengan jaringan komputer. Jaringan komputer itu seperti jaringan jalan yang menghubungkan komputer-komputer agar bisa saling berkomunikasi. Ada dua jenis utama: jaringan lokal (LAN) dan internet. Jaringan lokal biasanya hanya menghubungkan komputer-komputer di satu ruangan, seperti di sekolah atau rumah. Internet adalah jaringan yang menghubungkan komputer-komputer di seluruh dunia. \n\nJaringan lokal biasanya menggunakan kabel atau Wi-Fi untuk menghubungkan komputer-komputer. Router adalah perangkat yang menghubungkan jaringan lokal ke internet. Router seperti penjaga gerbang yang mengarahkan data ke tujuan yang benar. \n\nApakah kamu sudah pernah melihat router di rumahmu? Biasanya, router itu berwarna putih atau abu-abu dan ada lampu yang berkedip. \n\nSelain itu, ada juga istilah 'switch' yang sering digunakan dalam jaringan komputer. Switch adalah perangkat yang menghubungkan beberapa komputer dalam satu jaringan lokal. Switch seperti 'jembatan' yang menghubungkan komputer-komputer di satu ruangan. \n\nApakah kamu ingin tahu lebih banyak tentang perbedaan antara switch dan router? Atau mungkin kamu ingin tahu bagaimana cara menghubungkan komputer ke jaringan lokal?",
+  "n_sumber": 5,
+  "guardrail": {
+   "blocked": false,
+   "topScore": 0.621,
+   "threshold": 0.55
+  }
+ }
+]

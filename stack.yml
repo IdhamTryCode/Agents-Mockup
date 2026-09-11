@@ -1,0 +1,26 @@
+# Portainer stack for the GB10 box. Locally-built image loaded onto the box
+# (pull_policy: never — do NOT pull from a registry). Joins the existing
+# `rantai-llmops_llmops` network to reach vLLM at `vllm4b:8000` (chat) and Ollama
+# at `ollama:11434` (bge-m3 embeddings for retrieval). Publishes 3090 →
+# http://10.17.254.27:3090
+services:
+  rantai-agents-mockup:
+    image: rantai-agents-mockup:latest
+    pull_policy: never
+    container_name: rantai-agents-mockup
+    environment:
+      # Chat: the box's vLLM (base + LoRA adapters), OpenAI-compatible.
+      - VLLM_URL=http://vllm4b:8000/v1
+      # Retrieval embeddings.
+      - OLLAMA_URL=http://ollama:11434
+      - EMBED_MODEL=bge-m3
+    ports:
+      - "3090:3090"
+    networks:
+      - llmops
+    restart: unless-stopped
+
+networks:
+  llmops:
+    external: true
+    name: rantai-llmops_llmops

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 7. Lapisan (Horizon) Tanah</text>
+  <rect x="110" y="55" width="260" height="34" fill="#5b4327" stroke="#3b2b18"/>
+  <text x="240" y="77" text-anchor="middle" font-size="12" fill="#fff">Humus (serasah)</text>
+  <rect x="110" y="89" width="260" height="44" fill="#7a5a34" stroke="#3b2b18"/>
+  <text x="240" y="116" text-anchor="middle" font-size="12" fill="#fff">Tanah atas (topsoil)</text>
+  <rect x="110" y="133" width="260" height="48" fill="#a5834f" stroke="#3b2b18"/>
+  <text x="240" y="162" text-anchor="middle" font-size="12" fill="#fff">Tanah bawah (subsoil)</text>
+  <rect x="110" y="181" width="260" height="42" fill="#c0ad8e" stroke="#3b2b18"/>
+  <text x="240" y="207" text-anchor="middle" font-size="12" fill="#3b2b18">Batuan induk</text>
+  <text x="80" y="70" font-size="11" fill="#444">O</text><text x="80" y="115" font-size="11" fill="#444">A</text>
+  <text x="80" y="162" font-size="11" fill="#444">B</text><text x="80" y="207" font-size="11" fill="#444">C</text>
+  <text x="240" y="290" text-anchor="middle" font-size="12" fill="#444">Makin ke bawah, bahan organik makin sedikit.</text>
+</svg>

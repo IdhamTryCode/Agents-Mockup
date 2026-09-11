@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 19. Jadwal Kegiatan Sehari-hari</text>
+  <rect x="45" y="62" width="390" height="42" rx="7" fill="#fde9c8" stroke="#cfcabb"/>
+  <text x="80" y="88" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">05.00</text>
+  <line x1="118" y1="70" x2="118" y2="96" stroke="#bbb"/>
+  <text x="134" y="88" font-size="12" fill="#1a1a1a">Bangun & merapikan tempat tidur</text>
+  <rect x="45" y="114" width="390" height="42" rx="7" fill="#dbe7ff" stroke="#cfcabb"/>
+  <text x="80" y="140" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">06.30</text>
+  <line x1="118" y1="122" x2="118" y2="148" stroke="#bbb"/>
+  <text x="134" y="140" font-size="12" fill="#1a1a1a">Berangkat sekolah</text>
+  <rect x="45" y="166" width="390" height="42" rx="7" fill="#dcf2e0" stroke="#cfcabb"/>
+  <text x="80" y="192" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">13.00</text>
+  <line x1="118" y1="174" x2="118" y2="200" stroke="#bbb"/>
+  <text x="134" y="192" font-size="12" fill="#1a1a1a">Membantu orang tua</text>
+  <rect x="45" y="218" width="390" height="42" rx="7" fill="#f0e2f7" stroke="#cfcabb"/>
+  <text x="80" y="244" text-anchor="middle" font-size="12" font-weight="600" fill="#1a1a1a">19.00</text>
+  <line x1="118" y1="226" x2="118" y2="252" stroke="#bbb"/>
+  <text x="134" y="244" font-size="12" fill="#1a1a1a">Belajar & merapikan buku</text>
+  <text x="240" y="290" text-anchor="middle" font-size="12" fill="#444">Tugas di rumah dan sekolah dilakukan tepat waktu.</text>
+</svg>

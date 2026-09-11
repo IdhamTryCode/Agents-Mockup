@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <circle cx="80" cy="70" r="30" fill="#f9d84a" stroke="#d4a800"/>
+  <text x="80" y="120" text-anchor="middle" font-size="13" fill="#1a1a1a">Cahaya</text>
+  <path d="M180 150 q40 -40 90 0 q-40 40 -90 0 z" fill="#4ca35a" stroke="#2f7a3c"/>
+  <text x="225" y="205" text-anchor="middle" font-size="13" fill="#1a1a1a">Daun (klorofil)</text>
+  <text x="360" y="90" font-size="13" fill="#1a1a1a">→ O₂ (oksigen)</text>
+  <text x="360" y="150" font-size="13" fill="#1a1a1a">→ Glukosa</text>
+  <text x="70" y="230" font-size="13" fill="#1a1a1a">CO₂ + H₂O →</text>
+  <line x1="110" y1="90" x2="175" y2="140" stroke="#999" stroke-dasharray="4"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 1. Proses Fotosintesis</text>
+</svg>

@@ -1,0 +1,210 @@
+[
+ {
+  "id": "belajar-001",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang alat musik",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.665,
+  "sumber_top1": "Panduan Guru Seni Musik untuk SMA/MA/SMK/MAK Kelas X (Edisi Revisi), H. Lembar K",
+  "giliran1": "Baik, mari kita bahas alat musik. Alat musik itu beragam, ada yang dimainkan dengan tangan, ada yang dimainkan dengan alat bantu. Misalnya, piano itu dimainkan dengan jari, sementara gitar dimainkan dengan jari dan senar. Alat musik juga bisa dikelompokkan berdasarkan cara memainkannya, seperti alat musik tiup, gesek, petik, pukul, dan ditekan. Apakah kamu ingin tahu lebih banyak tentang jenis-jenis alat musik ini?",
+  "giliran2": "Betul, itu menarik. Buku kemarin membahas tentang berbagai jenis alat musik, termasuk alat musik tiup, gesek, petik, pukul, dan ditekan. Alat musik tiup seperti recorder dan flute, alat musik gesek seperti biola dan cello, alat musik petik seperti gitar dan ukulele, alat musik pukul seperti drum dan tamborin, dan alat musik ditekan seperti piano dan keyboard. Apakah kamu ingin tahu lebih detail tentang salah satu jenis alat musik ini?",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-002",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang lapisan tanah",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.664,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, Z › Tanah dan Keberlangsungan Kehidup",
+  "giliran1": "Lapisan tanah itu seperti lapisan kue, ya? Ada lapisan atas yang paling mudah kita lihat, lalu ada lapisan bawah yang lebih dalam. Lapisan tanah yang paling atas biasanya disebut lapisan A, dan lapisan ini paling subur karena banyak mengandung bahan organik. Lapisan B di bawahnya lebih sedikit bahan organik, tapi masih bisa menahan air. Lapisan C di bawahnya lebih padat dan mengandung batuan yang sudah lapuk. Lapisan D di bawahnya paling padat dan keras, biasanya batuan yang belum mengalami pelapukan. Jadi, lapisan tanah yang paling subur untuk tanaman biasanya ada di lapisan A. Apa kamu pernah melihat lapisan tanah yang berbeda-beda saat menggali?",
+  "giliran2": "Betul, lapisan tanah itu memang penting untuk kehidupan. Lapisan A biasanya paling subur karena banyak mengandung bahan organik, tapi lapisan B juga penting karena bisa menahan air. Lapisan C dan D lebih padat dan keras, tapi tetap penting untuk menopang tanah. Apa kamu tahu bagaimana lapisan tanah bisa berbeda-beda tergantung di mana kita berada? Misalnya, di daerah pegunungan mungkin lapisan tanahnya lebih tipis, sementara di dataran rendah mungkin lebih tebal.",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-003",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang bioteknologi pangan",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.66,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, ZYX › 7Bioteknologi",
+  "giliran1": "Baik, mari kita bahas bioteknologi pangan. Bioteknologi pangan adalah penerapan prinsip-prinsip biologi, biokimia, dan ilmu lainnya dalam pengolahan bahan pangan. Tujuannya adalah untuk meningkatkan kualitas, keamanan, dan keberlanjutan pangan. Contohnya, penggunaan mikroorganisme untuk membuat makanan fermentasi seperti tempe, yoghurt, dan keju. Selain itu, bioteknologi juga digunakan dalam pengembangan tanaman transgenik yang tahan terhadap hama atau penyakit. Apakah kamu sudah pernah mendengar tentang tempe atau yoghurt?",
+  "giliran2": "Betul, tempe dan yoghurt adalah contoh produk bioteknologi pangan yang sering kita konsumsi. Proses pembuatannya melibatkan penggunaan mikroorganisme seperti jamur Rhizopus oryzae untuk tempe dan bakteri Lactobacillus untuk yoghurt. Mikroorganisme ini membantu mengubah bahan baku menjadi produk yang lebih berkualitas. Apakah kamu ingin tahu lebih lanjut tentang proses fermentasi yang terjadi pada tempe dan yoghurt?",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-004",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang kemagnetan",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.652,
+  "sumber_top1": "Ilmu Pengetahuan alam Kelas IX Semester 2, Petunjuk Penggunaan Buku › 6Kemagneta",
+  "giliran1": "Baik, mari kita mulai dengan kemagnetan. Kemagnetan adalah sifat alami dari beberapa benda yang bisa menarik atau menolak benda lain yang juga memiliki sifat magnet. Contohnya, magnet bisa menarik besi atau baja. Tapi, kenapa magnet bisa menarik benda-benda itu? Itu yang akan kita bahas.",
+  "giliran2": "Betul, kemagnetan memang sering kita temui sehari-hari. Buku kemarin membahas tentang bagaimana magnet bisa menarik benda-benda feromagnetik seperti besi dan baja. Tapi, ada juga jenis magnet lain yang tidak bisa menarik benda-benda itu. Nah, kita akan bahas lebih detail tentang jenis-jenis magnet dan bagaimana mereka bekerja. Apakah kamu ingin tahu lebih banyak tentang jenis-jenis magnet?",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-005",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang masalah sosial",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.642,
+  "sumber_top1": "Sosiologi untuk SMA/MA Kelas XI (Edisi Revisi), RAGAMKETIMPANGAN GENDER › C. Pen",
+  "giliran1": "Baik, mari kita mulai dengan memahami apa itu masalah sosial. Masalah sosial adalah kondisi sosial yang dianggap merugikan oleh sebagian masyarakat dan memerlukan penyelesaian. Contohnya, kemiskinan, diskriminasi, atau kekerasan. Masalah sosial ini seringkali melibatkan pelanggaran nilai atau norma masyarakat yang kuat. Apakah kamu sudah pernah melihat contoh masalah sosial di sekitar kita?",
+  "giliran2": "Buku kemarin membahas tentang bagaimana masalah sosial dapat mempengaruhi kehidupan sehari-hari. Misalnya, bagaimana kemiskinan dapat mempengaruhi akses pendidikan atau kesehatan. Apakah kamu ingin tahu lebih banyak tentang bagaimana masalah sosial dapat mempengaruhi kehidupan sehari-hari?",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-006",
+  "kategori": "belajar",
+  "jenjang": "SMA",
+  "kelas": "Kelas 11",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang novel sejarah",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.637,
+  "sumber_top1": "Bahasa Indonesia Kelas XII, Menikmati Cerita Sejarah › Bab 2",
+  "giliran1": "Baik, mari kita mulai dengan novel sejarah. Novel sejarah adalah jenis novel yang menggunakan peristiwa sejarah sebagai latar belakang cerita. Misalnya, novel tentang Perang Dunia II atau kehidupan tokoh sejarah. Novel sejarah membantu kita memahami masa lalu dan bagaimana peristiwa sejarah memengaruhi kehidupan kita. Apa yang sudah kamu ketahui tentang novel sejarah?",
+  "giliran2": "Betul, novel sejarah memang sering digunakan dalam kehidupan sehari-hari. Buku kemarin membahas tentang bagaimana novel sejarah membantu kita memahami masa lalu dan bagaimana peristiwa sejarah memengaruhi kehidupan kita. Novel sejarah bisa menjadi alat untuk belajar sejarah dengan cara yang lebih menarik. Apa yang membuatmu tertarik dengan novel sejarah?",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-007",
+  "kategori": "belajar",
+  "jenjang": "SD",
+  "kelas": "Kelas 2",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang hidup rukun",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.629,
+  "sumber_top1": "Pendidikan Agama Kristen Dan Budi Pekerti Kelas II, A. Pengantar › Rukun di Seko",
+  "giliran1": "Baik, mari kita bahas tentang hidup rukun. Dalam buku kurikulum Kelas 2, hidup rukun itu penting banget, lho! Kita belajar dari Alkitab, seperti Matius 5:9, yang bilang kalau orang yang membawa damai itu anak-anak Allah. Nah, bagaimana cara kita bisa hidup rukun dengan teman-teman di sekolah? Coba ceritakan, apa yang kamu lakukan untuk hidup rukun dengan teman-temanmu?",
+  "giliran2": "Betul, itu menarik! Dalam buku kemarin, kita belajar tentang bagaimana cara kita bisa hidup rukun dengan tetangga. Ada beberapa hal yang bisa kita lakukan, seperti saling membantu, berbagi cerita, dan menghargai perbedaan. Nah, bagaimana kalau kita coba pikirkan, apa yang bisa kita lakukan untuk hidup rukun dengan teman-teman di sekolah? Coba sebutkan beberapa contoh.",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ },
+ {
+  "id": "belajar-008",
+  "kategori": "belajar",
+  "jenjang": "SMP",
+  "kelas": "Kelas 9",
+  "mode": "belajar",
+  "pertanyaan": "Aku mau belajar tentang jaringan komputer",
+  "harapan": {
+   "jawab": true,
+   "sitasi": true,
+   "figure": null,
+   "bahasa": "id",
+   "format": null
+  },
+  "mekanisme": "model",
+  "skor_retrieval": 0.621,
+  "sumber_top1": "Informatika untuk SMP/MTs Kelas VIII (Edisi Revisi), Tabel Logika Gerbang Sirkui",
+  "giliran1": "Baik, mari kita bahas jaringan komputer. Jaringan komputer itu seperti jaringan jalan raya untuk data. Bayangkan, komputer-komputer itu seperti rumah-rumah yang saling terhubung melalui jalan raya. Jalan raya ini disebut jaringan. Ada dua jenis utama jaringan: jaringan lokal (LAN) dan internet. LAN itu seperti jalan di sekitar rumah, sedangkan internet itu seperti jalan raya antar kota.\n\nJaringan lokal biasanya menghubungkan komputer-komputer di satu ruangan atau gedung, seperti di sekolah atau kantor. Internet menghubungkan komputer-komputer di seluruh dunia. Ada juga router yang bertugas mengarahkan data antar perangkat di jaringan. Router itu seperti petugas lalu lintas yang memastikan data sampai ke tujuan dengan benar.\n\nApakah kamu ingin tahu lebih banyak tentang bagaimana data bergerak di jaringan, atau mungkin tentang perbedaan antara LAN dan internet?",
+  "giliran2": "Betul, itu sudah tepat! Jaringan komputer memang sering kita gunakan sehari-hari, seperti saat kita bermain game online atau mengakses internet. Tapi, apakah kamu ingat bagaimana cara kerja router dalam jaringan komputer? Router itu seperti petugas lalu lintas yang memastikan data sampai ke tujuan dengan benar. Router menggunakan tabel routing untuk menentukan jalur terbaik. Apakah kamu ingin tahu lebih banyak tentang tabel routing?",
+  "model": "learn",
+  "checks": {
+   "sitasi": false,
+   "tanya": true,
+   "tidak_ceramah": true
+  }
+ }
+]

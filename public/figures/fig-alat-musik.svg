@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 12. Pengelompokan Alat Musik</text>
+  <rect x="30" y="90" width="130" height="110" rx="6" fill="#dbe7ff" stroke="#2563eb"/>
+  <text x="95.0" y="149.0" text-anchor="middle" font-size="12" fill="#1a1a1a"></text>
+  <text x="95" y="120" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Petik</text>
+  <text x="95" y="150" text-anchor="middle" font-size="12" fill="#444">gitar</text>
+  <text x="95" y="172" text-anchor="middle" font-size="12" fill="#444">kecapi</text>
+  <rect x="175" y="90" width="130" height="110" rx="6" fill="#dcf2e0" stroke="#2f7a3c"/>
+  <text x="240.0" y="149.0" text-anchor="middle" font-size="12" fill="#1a1a1a"></text>
+  <text x="240" y="120" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Tiup</text>
+  <text x="240" y="150" text-anchor="middle" font-size="12" fill="#444">seruling</text>
+  <text x="240" y="172" text-anchor="middle" font-size="12" fill="#444">terompet</text>
+  <rect x="320" y="90" width="130" height="110" rx="6" fill="#fde9c8" stroke="#d08a1d"/>
+  <text x="385.0" y="149.0" text-anchor="middle" font-size="12" fill="#1a1a1a"></text>
+  <text x="385" y="120" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Pukul</text>
+  <text x="385" y="150" text-anchor="middle" font-size="12" fill="#444">gendang</text>
+  <text x="385" y="172" text-anchor="middle" font-size="12" fill="#444">gamelan</text>
+  <text x="240" y="290" text-anchor="middle" font-size="12" fill="#444">Dikelompokkan menurut cara memainkannya.</text>
+</svg>

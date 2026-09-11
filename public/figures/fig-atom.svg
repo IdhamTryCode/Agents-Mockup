@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 13. Struktur Atom</text>
+  <ellipse cx="240" cy="150" rx="120" ry="60" fill="none" stroke="#999" stroke-dasharray="4"/>
+  <ellipse cx="240" cy="150" rx="75" ry="38" fill="none" stroke="#999" stroke-dasharray="4"/>
+  <circle cx="240" cy="150" r="26" fill="#c23b3b" stroke="#8a2727"/>
+  <text x="240" y="155" text-anchor="middle" font-size="11" fill="#fff">inti</text>
+  <circle cx="360" cy="150" r="8" fill="#2563eb"/><circle cx="120" cy="150" r="8" fill="#2563eb"/>
+  <circle cx="240" cy="112" r="8" fill="#2563eb"/><circle cx="315" cy="150" r="8" fill="#2563eb"/>
+  <text x="378" y="135" font-size="12" fill="#2563eb">elektron (−)</text>
+  <text x="240" y="208" text-anchor="middle" font-size="12" fill="#c23b3b">proton (+) dan neutron</text>
+  <text x="240" y="290" text-anchor="middle" font-size="12" fill="#444">Elektron bergerak mengelilingi inti pada kulit atom.</text>
+</svg>

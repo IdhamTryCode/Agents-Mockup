@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 3. Siklus Air</text>
+  <rect x="40" y="230" width="400" height="50" fill="#cfe6ff" stroke="#2563eb"/>
+  <text x="80" y="262" font-size="13" fill="#1a1a1a">Laut / danau</text>
+  <path d="M120 230 C120 150 160 120 210 130" fill="none" stroke="#2f7a3c" stroke-width="2" marker-end="url(#a)"/>
+  <text x="90" y="175" font-size="12" fill="#2f7a3c">Evaporasi</text>
+  <ellipse cx="300" cy="90" rx="55" ry="26" fill="#e5e7eb" stroke="#888"/>
+  <text x="300" y="95" text-anchor="middle" font-size="12" fill="#1a1a1a">Awan</text>
+  <path d="M300 120 l0 60" stroke="#2563eb" stroke-dasharray="4" marker-end="url(#a)"/>
+  <text x="310" y="160" font-size="12" fill="#2563eb">Presipitasi</text>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#555"/></marker></defs>
+</svg>

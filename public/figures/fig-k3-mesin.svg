@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 18. Alat Pelindung Diri (K3) di Bengkel</text>
+  <path d="M150 105 a45 45 0 0 1 90 0 z" fill="#f9d84a" stroke="#d4a800"/>
+  <rect x="140" y="105" width="110" height="10" rx="3" fill="#f9d84a" stroke="#d4a800"/>
+  <text x="195" y="140" text-anchor="middle" font-size="12" fill="#1a1a1a">Helm</text>
+  <rect x="290" y="70" width="90" height="30" rx="12" fill="#cfe6ff" stroke="#2563eb"/>
+  <text x="335" y="122" text-anchor="middle" font-size="12" fill="#1a1a1a">Kacamata</text>
+  <rect x="130" y="175" width="46" height="62" rx="10" fill="#dcf2e0" stroke="#2f7a3c"/>
+  <rect x="184" y="175" width="46" height="62" rx="10" fill="#dcf2e0" stroke="#2f7a3c"/>
+  <text x="180" y="255" text-anchor="middle" font-size="12" fill="#1a1a1a">Sarung tangan</text>
+  <path d="M300 200 h70 v30 h-70 z" fill="#5b4327" stroke="#3b2b18"/>
+  <path d="M300 200 v-28 h26 v28 z" fill="#7a5a34" stroke="#3b2b18"/>
+  <text x="335" y="255" text-anchor="middle" font-size="12" fill="#1a1a1a">Sepatu safety</text>
+</svg>

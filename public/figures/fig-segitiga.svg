@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <polygon points="120,240 360,240 200,90" fill="#dbe7ff" stroke="#2563eb"/>
+  <line x1="200" y1="90" x2="200" y2="240" stroke="#b45309" stroke-dasharray="5"/>
+  <rect x="200" y="224" width="16" height="16" fill="none" stroke="#b45309"/>
+  <text x="240" y="262" text-anchor="middle" font-size="13" fill="#1a1a1a">alas (a)</text>
+  <text x="210" y="170" font-size="13" fill="#b45309">tinggi (t)</text>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 2. Segitiga: alas dan tinggi</text>
+  <text x="240" y="290" text-anchor="middle" font-size="13" fill="#444">Luas = ½ × alas × tinggi</text>
+</svg>

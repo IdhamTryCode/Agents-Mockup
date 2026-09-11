@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 6. Magnet Batang dan Medan Magnet</text>
+  <rect x="170" y="135" width="70" height="45" fill="#c23b3b" stroke="#8a2727"/>
+  <rect x="240" y="135" width="70" height="45" fill="#3b6cc2" stroke="#27508a"/>
+  <text x="205" y="164" text-anchor="middle" font-size="16" font-weight="600" fill="#fff">U</text>
+  <text x="275" y="164" text-anchor="middle" font-size="16" font-weight="600" fill="#fff">S</text>
+  <path d="M170 135 q-70 -70 140 -35" fill="none" stroke="#666" stroke-dasharray="4"/>
+  <path d="M170 180 q-70 70 140 35" fill="none" stroke="#666" stroke-dasharray="4"/>
+  <path d="M170 145 q-40 -35 140 -18" fill="none" stroke="#999" stroke-dasharray="3"/>
+  <path d="M170 170 q-40 35 140 18" fill="none" stroke="#999" stroke-dasharray="3"/>
+  <text x="105" y="120" font-size="12" fill="#444">garis gaya</text>
+  <text x="330" y="160" font-size="12" fill="#444">magnet</text>
+  <text x="240" y="290" text-anchor="middle" font-size="12" fill="#444">Kutub senama tolak-menolak, tidak senama tarik-menarik.</text>
+</svg>

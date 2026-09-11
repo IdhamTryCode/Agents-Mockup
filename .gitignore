@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+tsconfig.tsbuildinfo
+npm-debug.log*
+.env
+.env.*
+
+# Korpus buku hasil ekstraksi (25 MB). SENGAJA tidak diikutkan: isinya teks buku
+# pelajaran, dan repo ini publik. Berkas ini dibutuhkan saat build image
+# (Dockerfile menyalin /app/data), jadi sediakan terpisah sebelum `docker build`.
+data/chunks.json

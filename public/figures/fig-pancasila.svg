@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" font-family="Poppins, system-ui, sans-serif">
+  <rect width="480" height="300" fill="#f6f6f3"/>
+  <rect x="1" y="1" width="478" height="298" fill="none" stroke="#e2e1dd"/>
+  <text x="240" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#1a1a1a">Gambar 15. Lima Sila Pancasila</text>
+  <rect x="55" y="62" width="370" height="32" rx="5" fill="#fff" stroke="#d8d5cc"/>
+  <circle cx="78" cy="78" r="11" fill="#fde9c8" stroke="#d08a1d"/>
+  <text x="78" y="83" text-anchor="middle" font-size="12">★</text>
+  <text x="100" y="83" font-size="12" fill="#1a1a1a">1. Ketuhanan Yang Maha Esa</text>
+  <rect x="55" y="100" width="370" height="32" rx="5" fill="#fff" stroke="#d8d5cc"/>
+  <circle cx="78" cy="116" r="11" fill="#fde9c8" stroke="#d08a1d"/>
+  <text x="78" y="121" text-anchor="middle" font-size="12">⛓</text>
+  <text x="100" y="121" font-size="12" fill="#1a1a1a">2. Kemanusiaan yang Adil dan Beradab</text>
+  <rect x="55" y="138" width="370" height="32" rx="5" fill="#fff" stroke="#d8d5cc"/>
+  <circle cx="78" cy="154" r="11" fill="#fde9c8" stroke="#d08a1d"/>
+  <text x="78" y="159" text-anchor="middle" font-size="12">🌳</text>
+  <text x="100" y="159" font-size="12" fill="#1a1a1a">3. Persatuan Indonesia</text>
+  <rect x="55" y="176" width="370" height="32" rx="5" fill="#fff" stroke="#d8d5cc"/>
+  <circle cx="78" cy="192" r="11" fill="#fde9c8" stroke="#d08a1d"/>
+  <text x="78" y="197" text-anchor="middle" font-size="12">🐂</text>
+  <text x="100" y="197" font-size="12" fill="#1a1a1a">4. Kerakyatan yang Dipimpin oleh Hikmat</text>
+  <rect x="55" y="214" width="370" height="32" rx="5" fill="#fff" stroke="#d8d5cc"/>
+  <circle cx="78" cy="230" r="11" fill="#fde9c8" stroke="#d08a1d"/>
+  <text x="78" y="235" text-anchor="middle" font-size="12">🌾</text>
+  <text x="100" y="235" font-size="12" fill="#1a1a1a">5. Keadilan Sosial bagi Seluruh Rakyat</text>
+</svg>
