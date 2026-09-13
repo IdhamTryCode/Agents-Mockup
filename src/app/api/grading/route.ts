@@ -3,6 +3,7 @@ import type { NextRequest } from "next/server";
 import { retrieve } from "@/lib/retrieve";
 import { hitsToExcerpts } from "@/lib/excerpts";
 import { vllmChat } from "@/lib/llm";
+import { ollamaEmbed } from "@/lib/ollama";
 import type { Jenjang } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -15,17 +16,20 @@ export const maxDuration = 300;
  * Dipanggil RantAI Agents SETELAH siswa menjawab soal isian/uraian dari mode Latihan.
  * Pilihan ganda TIDAK lewat sini -- kuncinya sudah ada di soal dan dicocokkan kode.
  *
- * BENTUK KELUARAN MENGIKUTI APA YANG MODEL KUASAI, bukan apa yang enak dibayangkan.
- * Diukur pada 99 kasus berlabel yang tidak sekalipun ikut melatih adapter:
+ * BENTUK KELUARAN MENGIKUTI APA YANG TERUKUR, bukan apa yang enak dibayangkan.
+ * Adapter grading v2, 99 kasus berlabel yang tidak sekalipun ikut melatihnya:
  *
- *     label tiga tingkat (BENAR / BENAR SEBAGIAN / SALAH)   66%
- *     "ada yang keliru atau tidak"                          91%
- *     alasan yang menyitasi kutipan                         98/99
+ *     "ada yang keliru atau tidak"   (`keliru`)        96%
+ *     label tiga tingkat             (`nilai_rinci`)   91%
  *
- * Karena itu `keliru` dan `umpan_balik` adalah permukaan utamanya, dan `nilai_rinci`
- * ikut dikirim sebagai bahan pertimbangan, bukan sebagai nilai final. 73% kesalahan
- * yang tersisa ada di perbatasan BENAR <-> BENAR SEBAGIAN; di luar itu modelnya andal
- * (jawaban salah yang dinilai BENAR: 1 dari 33).
+ * YANG TAMPIL KE SISWA: `keliru` + `kutipan_buku`. Kutipan buku adalah kalimat ASLI dari
+ * excerpts, dipilih KODE -- bukan ditulis model -- jadi mustahil berisi karangan.
+ *
+ * `umpan_balik` dan `jawaban_benar` adalah TULISAN MODEL. Uji tangan menemukan keduanya bisa
+ * mengarang fisika sambil memasang sitasi [1]: "kutub utara dan selatan saling berhadiran,
+ * jadi saling menolak" -- kata "berhadiran" muncul 0 kali di seluruh korpus, dan kutub
+ * berbeda nama menurut buku justru tarik-menarik. Sitasi bukan bukti kebenaran. Tampilkan
+ * keduanya hanya dengan label penjelasan AI.
  *
  * Jangan tampilkan `nilai_rinci` sebagai nilai siswa tanpa guru yang memeriksanya.
  */
@@ -38,6 +42,154 @@ const K = 4;
 const AMBANG = 0.55;
 
 type Nilai = "BENAR" | "BENAR SEBAGIAN" | "SALAH";
+
+type KalimatBuku = { kalimat: string; n: number; judul: string; bagian: string; skor: number };
+
+/** Kata yang terlalu umum untuk membedakan kalimat mana yang relevan. */
+const KATA_UMUM = new Set([
+  "yang", "dengan", "untuk", "adalah", "dari", "pada", "dalam", "atau", "jelaskan", "sebutkan",
+  "tuliskan", "bagaimana", "mengapa", "kamu", "siswa", "soal", "kedua", "berikut", "tersebut",
+  "menurut", "jawablah", "jawab", "bagian", "akan", "dapat", "bisa", "juga", "karena", "sebagai",
+  "oleh", "atas", "para", "setiap", "suatu", "sebuah", "kita", "mereka", "telah", "sudah", "belum",
+]);
+
+function kataPenting(teks: string): string[] {
+  let bersih = "";
+  for (const ch of teks.toLowerCase()) {
+    const huruf = ch.toUpperCase() !== ch.toLowerCase();
+    const angka = ch >= "0" && ch <= "9";
+    bersih += huruf || angka ? ch : " ";
+  }
+  return bersih.split(" ").filter((w) => w.length >= 4 && !KATA_UMUM.has(w));
+}
+
+/** Pecah teks buku jadi kalimat. Operasi string biasa, tanpa regex: batas kalimat = . ? !
+ *  lalu spasi lalu huruf besar, supaya "6.1", "Gambar 6.9b", dan "Swt. dan" tidak terpotong. */
+function pecahKalimat(teks: string): string[] {
+  const t = teks.split(String.fromCharCode(10)).join(" ");
+  const hasil: string[] = [];
+  let buf = "";
+  for (let i = 0; i < t.length; i++) {
+    const ch = t[i];
+    buf += ch;
+    if ((ch === "." || ch === "?" || ch === "!") && t[i + 1] === " ") {
+      const c = t[i + 2] ?? "";
+      if (c !== c.toLowerCase()) {
+        hasil.push(buf.trim());
+        buf = "";
+      }
+    }
+  }
+  if (buf.trim()) hasil.push(buf.trim());
+  return hasil;
+}
+
+/** Kalimat yang tidak boleh disodorkan ke siswa sebagai "menurut buku". Terutama soal
+ *  latihan di akhir bab: di bab kemagnetan, penilai sempat menyitasi opsi PENGECOH sebuah
+ *  soal pilihan ganda ("massa magnet yang mengangkat klip logam") sebagai fakta. */
+/** Berapa kali "angka + titik + spasi" muncul, penanda daftar bernomor yang ikut tergabung
+ *  ke satu kalimat saat PDF diekstrak ("Apa yang kamu perlukan?1. 2 paku besar ...2. 1 magnet"). */
+function jumlahPenandaDaftar(k: string): number {
+  let n = 0;
+  for (let i = 0; i + 2 < k.length; i++) {
+    if (k[i] >= "0" && k[i] <= "9" && k[i + 1] === "." && k[i + 2] === " ") n++;
+  }
+  return n;
+}
+
+function layakDitampilkan(k: string): boolean {
+  if (k.length < 30 || k.length > 360) return false;
+  // Bukan penjelasan: daftar alat/langkah yang tergabung, kredit gambar, judul aktivitas.
+  // Ditemukan di verifikasi kasus "mengukur kekuatan magnet": yang tampil malah
+  // "Aktivitas 6.2 Membuat Magnet Ayo, Kita Lakukan Apa yang kamu perlukan?1. 2 paku besar..."
+  // dan sisa OCR "SU Paku 1Paku 2 Sumber: Dok.".
+  if (jumlahPenandaDaftar(k) >= 2) return false;
+  if (k.includes("Apa yang kamu perlukan") || k.includes("Apa yang harus kamu lakukan")) return false;
+  if (k.includes("Sumber: Dok") || k.includes("Ayo, Kita")) return false;
+  if (k.includes("....") || k.includes("…")) return false; // soal rumpang
+  if (k.includes("A.") && k.includes("B.")) return false; // opsi pilihan ganda
+  // Pertanyaan buku, termasuk yang tergabung di tengah potongan karena batas kalimat hilang saat
+  // ekstraksi PDF ("Benda apa saja yang dapat ditarik lemah oleh magnet? 11Ilmu Pengetahuan Alam
+  // Amati dengan teliti ..."). Kalimat penjelasan di buku pelajaran hampir tidak pernah bertanda tanya.
+  if (k.includes("?")) return false;
+  // Instruksi kegiatan ("Coba lakukan Aktivitas 6.2 untuk dapat membuat magnet!"), bukan penjelasan.
+  if (k.endsWith("!") || k.includes("! ")) return false;
+  // Kredit dan keterangan gambar yang ikut terekstrak ("KemdikbudGambar 6.10 Percobaan ...").
+  if (k.includes("Kemdikbud")) return false;
+  return true;
+}
+
+function satuan(v: number[]): number[] {
+  let n = 0;
+  for (const x of v) n += x * x;
+  n = Math.sqrt(n) || 1;
+  return v.map((x) => x / n);
+}
+
+/** Pilih dua kalimat ASLI dari kutipan yang paling relevan dengan soal ini.
+ *  Dua tahap: saringan kata kunci ke 24 kandidat, baru diperingkat embedding bge-m3. bge-m3
+ *  berjalan di CPU di box ini, jadi meng-embed seluruh kalimat kutipan tiap penilaian terlalu
+ *  lambat.
+ *  Kueri = soal + `jawaban_benar` model. Karangan model tidak bisa tampil ke layar karena yang
+ *  ditampilkan selalu kalimat buku, tetapi ia bisa ikut MENYETIR kalimat mana yang dipilih.
+ *  Versi "soal saja" sudah dicoba untuk menutup risiko itu, dan HASILNYA LEBIH BURUK pada 4 dari
+ *  5 kasus kemagnetan: definisi diamagnetik hilang, kalimat "apungkan magnet di atas gabus" untuk
+ *  menentukan kutub hilang, dan potongan pertanyaan buku ikut naik. Soal berisi kata tanya,
+ *  kalimat buku berisi kata jawaban; jawaban_benar lebih sering menjembatani keduanya daripada
+ *  menyesatkannya. Relevansi pada skala 99 kasus BELUM diukur -- pilihan ini baru didukung 5 kasus.
+ *  Kalau embedding gagal, peringkat jatuh ke skor kata kunci -- penilaian tidak ikut gagal. */
+async function pilihKalimatBuku(
+  kutipan: { title: string; section: string; text: string }[],
+  soal: string,
+  jawabanBenar: string,
+): Promise<KalimatBuku[]> {
+  const kandidat: { kalimat: string; n: number; judul: string; bagian: string; lex: number }[] = [];
+  const sudah = new Set<string>();
+  kutipan.forEach((e, i) => {
+    for (const k of pecahKalimat(e.text)) {
+      // Chunk korpus saling bertumpang tindih; kalimat yang sama jangan muncul dua kali.
+      if (!layakDitampilkan(k) || sudah.has(k)) continue;
+      sudah.add(k);
+      kandidat.push({ kalimat: k, n: i + 1, judul: e.title, bagian: e.section, lex: 0 });
+    }
+  });
+  if (kandidat.length === 0) return [];
+
+  const kueri = soal + " " + jawabanBenar;
+  const q = new Set(kataPenting(kueri));
+  for (const c of kandidat) {
+    const w = new Set(kataPenting(c.kalimat));
+    let cocok = 0;
+    q.forEach((x) => {
+      if (w.has(x)) cocok++;
+    });
+    c.lex = cocok;
+  }
+  const pendek = kandidat.slice().sort((a, b) => b.lex - a.lex).slice(0, 24);
+
+  let skor: number[];
+  try {
+    const vecs = await ollamaEmbed([kueri, ...pendek.map((c) => c.kalimat)]);
+    const qv = satuan(vecs[0] ?? []);
+    skor = pendek.map((_, i) => {
+      const v = satuan(vecs[i + 1] ?? []);
+      let d = 0;
+      for (let k = 0; k < Math.min(qv.length, v.length); k++) d += qv[k] * v[k];
+      return d;
+    });
+  } catch {
+    const maks = Math.max(1, ...pendek.map((c) => c.lex));
+    skor = pendek.map((c) => c.lex / maks);
+  }
+
+  return pendek
+    .map((c, i) => ({
+      kalimat: c.kalimat, n: c.n, judul: c.judul, bagian: c.bagian,
+      skor: Number(skor[i].toFixed(3)),
+    }))
+    .sort((a, b) => b.skor - a.skor)
+    .slice(0, 2);
+}
 
 const SKEMA = {
   type: "object",
@@ -181,20 +333,29 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const kutipanBuku = await pilihKalimatBuku(kutipan, soal, out.jawaban_benar ?? "");
+
   return Response.json({
     dinilai: true,
 
-    // ── Yang andal (91%): dipakai untuk memutuskan apakah siswa perlu memperbaiki ──
-    keliru: nilai === "SALAH",
-    umpan_balik: out.alasan ?? "",
-    jawaban_benar: out.jawaban_benar ?? "",
+    // ── Tampil ke siswa ──
+    keliru: nilai === "SALAH", // terukur 96%
+    // Kalimat ASLI dari buku, dipilih kode. Pasti ada di buku, tetapi BELUM pasti tepat
+    // menjawab soal: pada 5 kasus uji, soal definisi tepat sasaran, soal prosedural
+    // kadang meleset, dan soal yang sumbernya cacat menghasilkan kalimat tak relevan.
+    kutipan_buku: kutipanBuku,
     sumber: kutipan.map((e, i) => ({ n: i + 1, judul: e.title, bagian: e.section })),
 
-    // ── Bahan pertimbangan (66%): JANGAN ditampilkan sebagai nilai final ──
-    nilai_rinci: nilai,
+    // ── Tulisan model: tampilkan hanya dengan label penjelasan AI ──
+    umpan_balik: out.alasan ?? "",
+    jawaban_benar: out.jawaban_benar ?? "",
+
+    // ── Untuk guru, bukan nilai siswa ──
+    nilai_rinci: nilai, // terukur 91%
     catatan_keandalan:
-      "keliru & umpan_balik terukur 91% pada 99 kasus held-out; nilai_rinci 66%. " +
-      "Tampilkan nilai_rinci hanya kepada guru, bukan sebagai nilai siswa.",
+      "keliru terukur 96% dan nilai_rinci 91% pada 99 kasus held-out. kutipan_buku adalah " +
+      "kalimat asli dari buku yang dipilih kode, aman ditampilkan ke siswa. umpan_balik dan " +
+      "jawaban_benar ditulis model dan bisa keliru; tampilkan hanya dengan label penjelasan AI.",
 
     skor_grounding: skorTop1 === null ? null : Number(skorTop1.toFixed(3)),
     sumber_kutipan: dikirim.length ? "dikirim pemanggil" : "retrieval",

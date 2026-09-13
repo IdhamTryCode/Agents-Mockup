@@ -169,6 +169,8 @@ type GradeResult = {
   umpan_balik?: string;
   jawaban_benar?: string;
   sumber?: { n: number; judul: string; bagian: string }[];
+  /** kalimat ASLI dari buku, dipilih kode -- ini yang dipegang siswa, bukan tulisan model */
+  kutipan_buku?: { kalimat: string; n: number; judul: string; bagian: string; skor: number }[];
   nilai_rinci?: string;
   skor_grounding?: number;
   model?: string;
@@ -243,11 +245,35 @@ function HasilNilai({ hasil }: { hasil: GradeResult }) {
       <div style={{ fontWeight: 700, color: keliru ? "var(--danger)" : "var(--ok)" }}>
         {keliru ? "✗ Masih ada yang keliru" : "✓ Tidak ada yang keliru"}
       </div>
-      {hasil.umpan_balik && <div style={{ marginTop: 6, lineHeight: 1.5 }}>{hasil.umpan_balik}</div>}
-      {hasil.jawaban_benar && (
-        <div className="q-exp">
-          <b>Menurut buku:</b> {hasil.jawaban_benar}
+      {/* Yang dipegang siswa: kalimat ASLI dari buku, dipilih kode. Label "Menurut buku" dulu
+          menempel pada `jawaban_benar` -- padahal itu tulisan model, dan uji tangan menemukannya
+          mengarang fisika ("jarum kompas menunjuk ke kutub utara magnet"). */}
+      {(hasil.kutipan_buku ?? []).length > 0 && (
+        <div style={{ marginTop: 8 }}>
+          <div className="meta" style={{ marginTop: 0 }}>
+            📖 <b>Kalimat terkait dari buku</b> — kutipan asli, bukan tulisan AI; pilihannya bisa kurang tepat sasaran
+          </div>
+          {hasil.kutipan_buku!.map((k, i) => (
+            <div key={i} className="q-exp" style={{ marginTop: 6 }}>
+              “{k.kalimat}” <span style={{ opacity: 0.65 }}>[{k.n}]</span>
+            </div>
+          ))}
         </div>
+      )}
+      {(hasil.umpan_balik || hasil.jawaban_benar) && (
+        <details style={{ marginTop: 8 }}>
+          <summary className="meta" style={{ cursor: "pointer" }}>
+            🤖 Penjelasan AI — bisa keliru; pegangan utamanya kalimat buku di atas
+          </summary>
+          {hasil.umpan_balik && (
+            <div style={{ marginTop: 6, lineHeight: 1.5, opacity: 0.9 }}>{hasil.umpan_balik}</div>
+          )}
+          {hasil.jawaban_benar && (
+            <div className="q-exp">
+              <b>Jawaban versi AI:</b> {hasil.jawaban_benar}
+            </div>
+          )}
+        </details>
       )}
       {(hasil.sumber ?? []).length > 0 && (
         <div className="meta">
