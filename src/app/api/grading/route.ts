@@ -4,6 +4,7 @@ import { retrieve } from "@/lib/retrieve";
 import { hitsToExcerpts } from "@/lib/excerpts";
 import { vllmChat } from "@/lib/llm";
 import { ollamaEmbed } from "@/lib/ollama";
+import { kataPenting, layakDitampilkan, pecahKalimat, verifikasiSalinanModel } from "@/lib/bacaan";
 import type { Jenjang } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -31,6 +32,14 @@ export const maxDuration = 300;
  * berbeda nama menurut buku justru tarik-menarik. Sitasi bukan bukti kebenaran. Tampilkan
  * keduanya hanya dengan label penjelasan AI.
  *
+ * GERBANG DASAR SOAL. Sebelum menilai, model dasar diminta MENYALIN kalimat buku yang memuat
+ * jawaban soal (untuk soal penerapan: prinsip yang dipakai menjawabnya). Salinannya dicocokkan KODE
+ * ke kalimat buku yang sebenarnya. Kalau tidak ada yang cocok, jawaban TIDAK dinilai dan diserahkan
+ * ke guru -- sesuai PRD: bila informasi tidak cukup, nyatakan bahwa jawabannya tidak dapat
+ * ditentukan dari buku. Menilai soal yang jawabannya tidak ada di bacaan berarti menilai dari
+ * ingatan model; uji tangan menemukan soal semacam itu, dibangun dari soal latihan buku.
+ * Kalimat buku hasil gerbang ini juga yang ditampilkan ke siswa.
+ *
  * Jangan tampilkan `nilai_rinci` sebagai nilai siswa tanpa guru yang memeriksanya.
  */
 
@@ -44,80 +53,6 @@ const AMBANG = 0.55;
 type Nilai = "BENAR" | "BENAR SEBAGIAN" | "SALAH";
 
 type KalimatBuku = { kalimat: string; n: number; judul: string; bagian: string; skor: number };
-
-/** Kata yang terlalu umum untuk membedakan kalimat mana yang relevan. */
-const KATA_UMUM = new Set([
-  "yang", "dengan", "untuk", "adalah", "dari", "pada", "dalam", "atau", "jelaskan", "sebutkan",
-  "tuliskan", "bagaimana", "mengapa", "kamu", "siswa", "soal", "kedua", "berikut", "tersebut",
-  "menurut", "jawablah", "jawab", "bagian", "akan", "dapat", "bisa", "juga", "karena", "sebagai",
-  "oleh", "atas", "para", "setiap", "suatu", "sebuah", "kita", "mereka", "telah", "sudah", "belum",
-]);
-
-function kataPenting(teks: string): string[] {
-  let bersih = "";
-  for (const ch of teks.toLowerCase()) {
-    const huruf = ch.toUpperCase() !== ch.toLowerCase();
-    const angka = ch >= "0" && ch <= "9";
-    bersih += huruf || angka ? ch : " ";
-  }
-  return bersih.split(" ").filter((w) => w.length >= 4 && !KATA_UMUM.has(w));
-}
-
-/** Pecah teks buku jadi kalimat. Operasi string biasa, tanpa regex: batas kalimat = . ? !
- *  lalu spasi lalu huruf besar, supaya "6.1", "Gambar 6.9b", dan "Swt. dan" tidak terpotong. */
-function pecahKalimat(teks: string): string[] {
-  const t = teks.split(String.fromCharCode(10)).join(" ");
-  const hasil: string[] = [];
-  let buf = "";
-  for (let i = 0; i < t.length; i++) {
-    const ch = t[i];
-    buf += ch;
-    if ((ch === "." || ch === "?" || ch === "!") && t[i + 1] === " ") {
-      const c = t[i + 2] ?? "";
-      if (c !== c.toLowerCase()) {
-        hasil.push(buf.trim());
-        buf = "";
-      }
-    }
-  }
-  if (buf.trim()) hasil.push(buf.trim());
-  return hasil;
-}
-
-/** Kalimat yang tidak boleh disodorkan ke siswa sebagai "menurut buku". Terutama soal
- *  latihan di akhir bab: di bab kemagnetan, penilai sempat menyitasi opsi PENGECOH sebuah
- *  soal pilihan ganda ("massa magnet yang mengangkat klip logam") sebagai fakta. */
-/** Berapa kali "angka + titik + spasi" muncul, penanda daftar bernomor yang ikut tergabung
- *  ke satu kalimat saat PDF diekstrak ("Apa yang kamu perlukan?1. 2 paku besar ...2. 1 magnet"). */
-function jumlahPenandaDaftar(k: string): number {
-  let n = 0;
-  for (let i = 0; i + 2 < k.length; i++) {
-    if (k[i] >= "0" && k[i] <= "9" && k[i + 1] === "." && k[i + 2] === " ") n++;
-  }
-  return n;
-}
-
-function layakDitampilkan(k: string): boolean {
-  if (k.length < 30 || k.length > 360) return false;
-  // Bukan penjelasan: daftar alat/langkah yang tergabung, kredit gambar, judul aktivitas.
-  // Ditemukan di verifikasi kasus "mengukur kekuatan magnet": yang tampil malah
-  // "Aktivitas 6.2 Membuat Magnet Ayo, Kita Lakukan Apa yang kamu perlukan?1. 2 paku besar..."
-  // dan sisa OCR "SU Paku 1Paku 2 Sumber: Dok.".
-  if (jumlahPenandaDaftar(k) >= 2) return false;
-  if (k.includes("Apa yang kamu perlukan") || k.includes("Apa yang harus kamu lakukan")) return false;
-  if (k.includes("Sumber: Dok") || k.includes("Ayo, Kita")) return false;
-  if (k.includes("....") || k.includes("…")) return false; // soal rumpang
-  if (k.includes("A.") && k.includes("B.")) return false; // opsi pilihan ganda
-  // Pertanyaan buku, termasuk yang tergabung di tengah potongan karena batas kalimat hilang saat
-  // ekstraksi PDF ("Benda apa saja yang dapat ditarik lemah oleh magnet? 11Ilmu Pengetahuan Alam
-  // Amati dengan teliti ..."). Kalimat penjelasan di buku pelajaran hampir tidak pernah bertanda tanya.
-  if (k.includes("?")) return false;
-  // Instruksi kegiatan ("Coba lakukan Aktivitas 6.2 untuk dapat membuat magnet!"), bukan penjelasan.
-  if (k.endsWith("!") || k.includes("! ")) return false;
-  // Kredit dan keterangan gambar yang ikut terekstrak ("KemdikbudGambar 6.10 Percobaan ...").
-  if (k.includes("Kemdikbud")) return false;
-  return true;
-}
 
 function satuan(v: number[]): number[] {
   let n = 0;
@@ -218,6 +153,75 @@ function bangunSystem(kutipan: { title: string; section: string; text: string }[
   return `${kepala}\n\n## Knowledge Base Context\n\nExcerpts:\n${isi}\n\nSources:\n${sumber}`;
 }
 
+/** Model yang memeriksa dasar soal. Model dasar, bukan adapter penilai: tugasnya menyalin
+ *  kalimat, bukan menilai, dan adapter penilai hanya pernah dilatih dengan satu bentuk keluaran. */
+const MODEL_DASAR = process.env.GROUNDING_CHECK_MODEL ?? "base";
+
+const SKEMA_DASAR = {
+  type: "object",
+  properties: {
+    ada: { type: "boolean" },
+    kalimat: { type: "array", items: { type: "string" }, maxItems: 3 },
+  },
+  required: ["ada", "kalimat"],
+  additionalProperties: false,
+} as const;
+
+type DasarSoal = { status: "ditemukan" | "tidak ditemukan" | "tidak diperiksa"; kalimat: KalimatBuku[] };
+
+async function periksaDasarSoal(
+  kutipan: { title: string; section: string; text: string }[],
+  soal: string,
+  level: string,
+): Promise<DasarSoal> {
+  const NL = String.fromCharCode(10);
+  const daftar = kutipan.map((e, i) => "[" + (i + 1) + "] " + e.text).join(NL + NL);
+  const sistem = [
+    "Tugasmu MEMERIKSA, bukan menjawab. Tentukan apakah soal di bawah dapat dijawab dari kutipan buku.",
+    "- Soal hafalan: harus ada kalimat di kutipan yang memuat jawabannya.",
+    "- Soal penerapan (kasus, skenario, contoh sikap): cukup ada kalimat di kutipan yang memuat prinsip atau aturan yang dipakai untuk menjawabnya.",
+    "Salin 1 sampai 3 kalimat itu PERSIS kata demi kata dari kutipan. Jangan mengubah, meringkas, atau menambah.",
+    "Pertanyaan, soal latihan, dan pilihan jawaban yang tertulis di dalam kutipan BUKAN dasar jawaban.",
+    "Jangan memakai pengetahuanmu sendiri. Kalau kalimat seperti itu tidak ada, isi ada = false dan kalimat = [].",
+    "",
+    "Kutipan:",
+    daftar,
+  ].join(NL);
+  const pesan = (level ? "Level soal: " + level + NL : "") + "Soal: " + soal;
+
+  let mentah: string;
+  try {
+    mentah = await vllmChat(
+      MODEL_DASAR,
+      [
+        { role: "system", content: sistem },
+        { role: "user", content: pesan },
+      ],
+      { temperature: 0, maxTokens: 500, guidedJson: SKEMA_DASAR }
+    );
+  } catch {
+    // Gerbang gagal karena infrastruktur: jangan menahan penilaian, tapi nyatakan tidak diperiksa.
+    return { status: "tidak diperiksa", kalimat: [] };
+  }
+  let o: { ada?: boolean; kalimat?: string[] };
+  try {
+    o = JSON.parse(mentah);
+  } catch {
+    return { status: "tidak diperiksa", kalimat: [] };
+  }
+  const cocok: KalimatBuku[] = [];
+  for (const q of (o.kalimat ?? []).slice(0, 3)) {
+    for (const k of verifikasiSalinanModel(q, kutipan, soal)) {
+      if (!cocok.some((x) => x.kalimat === k.kalimat)) cocok.push(k);
+    }
+  }
+  // Model mengaku ada dasar tetapi salinannya tidak ada di buku, berasal dari soal latihan, atau
+  // tidak membahas soal: perlakukan sebagai tidak ada. Pengakuan tanpa kalimat yang bisa
+  // diperiksa bukan dasar.
+  if (o.ada === true && cocok.length > 0) return { status: "ditemukan", kalimat: cocok.slice(0, 2) };
+  return { status: "tidak ditemukan", kalimat: [] };
+}
+
 export async function POST(req: NextRequest) {
   let body: Record<string, unknown>;
   try {
@@ -232,6 +236,8 @@ export async function POST(req: NextRequest) {
   // Topik yang MELAHIRKAN soal ini. Opsional, tapi sangat menentukan: lihat catatan di
   // bawah pada pembentukan kueri retrieval.
   const topik = String(body.topik ?? "").trim();
+  // Level soal dari generator Latihan ("ingatan" | "aplikasi"). Soal aplikasi cukup berdasar prinsip.
+  const level = String(body.level ?? "").trim();
   if (!soal) return Response.json({ error: "Field `soal` wajib diisi" }, { status: 400 });
   if (!jawabanSiswa) {
     return Response.json({ error: "Field `jawaban_siswa` wajib diisi" }, { status: 400 });
@@ -287,6 +293,21 @@ export async function POST(req: NextRequest) {
 
   const system = bangunSystem(kutipan);
 
+  const dasar = await periksaDasarSoal(kutipan, soal, level);
+  if (dasar.status === "tidak ditemukan") {
+    return Response.json({
+      dinilai: false,
+      perlu_guru: true,
+      alasan_tidak_dinilai:
+        "Jawaban soal ini tidak ditemukan di bacaan buku yang dipakai membuat soal, jadi tidak " +
+        "bisa dinilai dari buku. Serahkan ke guru untuk diperiksa.",
+      dasar_soal: dasar.status,
+      sumber: kutipan.map((e, i) => ({ n: i + 1, judul: e.title, bagian: e.section })),
+      sumber_kutipan: dikirim.length ? "dikirim pemanggil" : "retrieval",
+      skor_grounding: skorTop1 === null ? null : Number(skorTop1.toFixed(3)),
+    });
+  }
+
   let mentah: string;
   try {
     mentah = await vllmChat(
@@ -333,7 +354,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const kutipanBuku = await pilihKalimatBuku(kutipan, soal, out.jawaban_benar ?? "");
+  // Kalimat buku yang ditampilkan: hasil gerbang (terverifikasi memuat dasar jawaban) bila ada;
+  // pemilih berbasis embedding hanya cadangan bila gerbang tidak sempat memeriksa.
+  const kutipanBuku = dasar.kalimat.length > 0
+    ? dasar.kalimat
+    : await pilihKalimatBuku(kutipan, soal, out.jawaban_benar ?? "");
 
   return Response.json({
     dinilai: true,
@@ -344,6 +369,7 @@ export async function POST(req: NextRequest) {
     // menjawab soal: pada 5 kasus uji, soal definisi tepat sasaran, soal prosedural
     // kadang meleset, dan soal yang sumbernya cacat menghasilkan kalimat tak relevan.
     kutipan_buku: kutipanBuku,
+    dasar_soal: dasar.status,
     sumber: kutipan.map((e, i) => ({ n: i + 1, judul: e.title, bagian: e.section })),
 
     // ── Tulisan model: tampilkan hanya dengan label penjelasan AI ──

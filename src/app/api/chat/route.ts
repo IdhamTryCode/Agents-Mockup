@@ -5,6 +5,7 @@ import { buildSystemPrompt, servedModel, type Kelas, type Mode } from "@/lib/con
 import { hitsToExcerpts, attachFigures } from "@/lib/excerpts";
 import { vllmChat, type ChatMsg } from "@/lib/llm";
 import { bersihkanSoal } from "@/lib/soal";
+import { bacaanUntukLatihan } from "@/lib/bacaan";
 import type { Jenjang } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -208,7 +209,14 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const texts = hitsToExcerpts(hits).slice(0, 4);
+    // Mode Latihan membuat soal HANYA dari uraian materi: bagian soal latihan buku dibuang dulu.
+    // Soal yang dibangun dari soal latihan -- termasuk butir pengecoh dan soal uraian tanpa kunci --
+    // tidak punya jawaban di buku, lalu penilai diminta menilai terhadap bacaan yang tidak memuatnya.
+    // Dari 8 hasil retrieval, kutipan yang setelah dibersihkan tinggal sedikit isinya disingkirkan.
+    // Kutipan bersih ini pula yang dikembalikan sebagai `excerpts` dan dipakai penilai.
+    const texts = mode === "latihan"
+      ? bacaanUntukLatihan(hitsToExcerpts(hits))
+      : hitsToExcerpts(hits).slice(0, 4);
     // Up to 2 figures: with a broader figure set a question can legitimately have
     // two illustrations, and the model still embeds only the ones it judges relevant.
     const { figureExcerpts, figureSources } = attachFigures(topic, jenjang, texts.length, 2);

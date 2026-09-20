@@ -171,6 +171,9 @@ type GradeResult = {
   sumber?: { n: number; judul: string; bagian: string }[];
   /** kalimat ASLI dari buku, dipilih kode -- ini yang dipegang siswa, bukan tulisan model */
   kutipan_buku?: { kalimat: string; n: number; judul: string; bagian: string; skor: number }[];
+  /** true bila jawaban soal tidak ditemukan di bacaan buku -- diserahkan ke guru */
+  perlu_guru?: boolean;
+  dasar_soal?: string;
   nilai_rinci?: string;
   skor_grounding?: number;
   model?: string;
@@ -178,8 +181,8 @@ type GradeResult = {
 };
 
 /** Kotak jawab + hasil penilaian untuk SATU soal isian/uraian. */
-function GradingBox({ pertanyaan, jenjang, kelas, topik, excerpts }:
-  { pertanyaan: string; jenjang: Jenjang; kelas: string; topik?: string;
+function GradingBox({ pertanyaan, jenjang, kelas, topik, excerpts, level }:
+  { pertanyaan: string; jenjang: Jenjang; kelas: string; topik?: string; level?: string;
     excerpts?: { title: string; section: string; text: string }[] }) {
   const [jawab, setJawab] = useState("");
   const [sedang, setSedang] = useState(false);
@@ -193,7 +196,7 @@ function GradingBox({ pertanyaan, jenjang, kelas, topik, excerpts }:
       const r = await fetch("/api/grading", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ soal: pertanyaan, jawaban_siswa: jawab.trim(), jenjang, kelas, topik, excerpts }),
+        body: JSON.stringify({ soal: pertanyaan, jawaban_siswa: jawab.trim(), jenjang, kelas, topik, excerpts, level }),
       });
       setHasil((await r.json()) as GradeResult);
     } catch (e) {
@@ -228,7 +231,8 @@ function HasilNilai({ hasil }: { hasil: GradeResult }) {
   if (hasil.dinilai === false) {
     return (
       <div className="q-exp" style={{ marginTop: 8 }}>
-        🛡 <b>Tidak dinilai.</b> {hasil.alasan_tidak_dinilai}
+        {hasil.perlu_guru ? "🧑‍🏫 " : "🛡 "}
+        <b>{hasil.perlu_guru ? "Perlu diperiksa guru." : "Tidak dinilai."}</b> {hasil.alasan_tidak_dinilai}
         {typeof hasil.skor_grounding === "number" ? ` (skor ${hasil.skor_grounding.toFixed(3)})` : ""}
       </div>
     );
@@ -286,7 +290,7 @@ function HasilNilai({ hasil }: { hasil: GradeResult }) {
       <div className="meta">
         📋 penilaian rinci: <b>{hasil.nilai_rinci}</b>
         <span style={{ opacity: 0.75 }}>
-          {" "}— untuk guru, bukan nilai siswa (terukur 91%, sedangkan baris di atas 97%)
+          {" "}— untuk guru, bukan nilai siswa (terukur 91%; benar/keliru 96%)
         </span>
         {typeof hasil.skor_grounding === "number" ? ` · grounding ${hasil.skor_grounding.toFixed(3)}` : ""}
       </div>
@@ -402,7 +406,7 @@ function SoalList({ soal, jenjang, kelas, topik, excerpts }:
             {s.opsi ? (
               <PilihanGanda opsi={s.opsi} kunci={s.kunci} />
             ) : (
-              s.pertanyaan && <GradingBox pertanyaan={s.pertanyaan} jenjang={jenjang} kelas={kelas} topik={topik} excerpts={excerpts} />
+              s.pertanyaan && <GradingBox pertanyaan={s.pertanyaan} jenjang={jenjang} kelas={kelas} topik={topik} excerpts={excerpts} level={s.level} />
             )}
             {showKey && s.kunci !== undefined && (
               <div style={{ marginTop: 6, fontSize: 13, opacity: 0.85 }}>
