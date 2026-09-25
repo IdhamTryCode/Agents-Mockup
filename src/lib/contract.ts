@@ -190,6 +190,10 @@ export function buildSystemPrompt(args: {
  *  ASK_MODEL env overrides the Tanya adapter so we can A/B a retrained one
  *  (e.g. askv3) against the old `ask` without a rebuild — recreate with the env. */
 export function servedModel(mode: Mode): string {
-  const askModel = process.env.ASK_MODEL || "ask";
+  // Default askv6, NOT "ask". The old `ask` adapter (28 Aug) was dropped from the
+  // gateway allowlist on 24 Sep and now answers 403, so an unset ASK_MODEL used to
+  // take Tanya down entirely. Keep the env override for A/B, but make the default
+  // the adapter the handover doc actually names.
+  const askModel = process.env.ASK_MODEL || "askv6";
   return mode === "tanya" ? askModel : mode === "belajar" ? "learn" : "practice";
 }
